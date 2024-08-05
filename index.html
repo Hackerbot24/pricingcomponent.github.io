@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Pricing Component</title>
+    <style>
+        /* CSS Reset and Global Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Main Container */
+        .pricing-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* Header Styles */
+        h1 {
+            color: #4a4a4a;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+
+        /* Toggle Styles */
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .toggle-label {
+            color: #9292a6;
+            font-size: 1rem;
+            margin: 0 10px;
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #7f7fd5;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Pricing Cards Container */
+        .pricing-cards {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* Pricing Card Styles */
+        .pricing-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.highlighted {
+            background-color: #7f7fd5;
+            color: #ffffff;
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(127, 127, 213, 0.4);
+        }
+
+        .plan-name {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .highlighted .plan-name {
+            color: #ffffff;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4a4a4a;
+        }
+
+        .highlighted .price {
+            color: #ffffff;
+        }
+
+        .feature {
+            margin-bottom: 10px;
+            color: #9292a6;
+        }
+
+        .highlighted .feature {
+            color: #e0e0ff;
+        }
+
+        .cta-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #7f7fd5;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .highlighted .cta-button {
+            background-color: #ffffff;
+            color: #7f7fd5;
+        }
+
+        .cta-button:hover {
+            background-color: #6a6ac5;
+        }
+
+        .highlighted .cta-button:hover {
+            background-color: #f0f0f7;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pricing-cards {
+                flex-direction: column;
+            }
+
+            .pricing-card {
+                margin-bottom: 20px;
+            }
+
+            .pricing-card.highlighted {
+                transform: scale(1);
+                order: -1;
+            }
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="pricing-container">
+        <h1>Our Pricing</h1>
+        <div class="toggle-container">
+            <span class="toggle-label">Annually</span>
+            <label class="toggle">
+                <input type="checkbox" id="pricing-toggle">
+                <span class="slider"></span>
+            </label>
+            <span class="toggle-label">Monthly</span>
+        </div>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h2 class="plan-name">Basic</h2>
+                <p class="price" data-annual="199.99" data-monthly="19.99">$19.99</p>
+                <p class="feature">500 GB Storage</p>
+                <p class="feature">2 Users Allowed</p>
+                <p class="feature">Send up to 3 GB</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="pricing-card highlighted">
+                <h2 class="plan-name">Professional</h2>
+                <p class="price" data-annual="249.99" data-monthly="24.99">$24.99</p>
+                <p class="feature">1 TB Storage</p>
+                <p class="feature">5 Users Allowed</p>
+                <p class="feature">Send up to 10 GB</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+            <div class="pricing-card">
+                <h2 class="plan-name">Master</h2>
+                <p class="price" data-annual="399.99" data-monthly="39.99">$39.99</p>
+                <p class="feature">2 TB Storage</p>
+                <p class="feature">10 Users Allowed</p>
+                <p class="feature">Send up to 20 GB</p>
+                <button class="cta-button">Learn More</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        const toggle = document.getElementById('pricing-toggle');
+        const prices = document.querySelectorAll('.price');
+
+        toggle.addEventListener('change', function() {
+            prices.forEach(price => {
+                if (this.checked) {
+                    price.textContent = `$${price.dataset.monthly}`;
+                } else {
+                    price.textContent = `$${price.dataset.annual}`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
